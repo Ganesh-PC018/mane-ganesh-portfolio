@@ -22,7 +22,6 @@ Thumbs.db
 .idea/
 
 # Build directories
-dist/
 build/
 
 # Coverage reports
