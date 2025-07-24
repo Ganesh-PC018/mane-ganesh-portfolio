@@ -49,7 +49,7 @@ export const Navigation = () => {
             className="text-compact-lg font-semibold cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
-            Ganesh<span className="text-primary">.</span>
+            Ganesh<span className="text-primary">.tech</span>
           </div>
 
           {/* Desktop Navigation */}

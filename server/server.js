@@ -24,12 +24,17 @@ app.post("/send", async (req, res) => {
     },
   });
 
-  const mailOptions = {
-    from: email,
-    to: process.env.MY_EMAIL,
-    subject: `Message from ${name}`,
-    text: message,
-  };
+const mailOptions = {
+  from: process.env.MY_EMAIL,
+  to: process.env.MY_EMAIL,
+  replyTo: email,
+  subject: `Porfolio message from ${name}`,
+  text: `You have a new message from your portfolio contact form:
+Name: ${name}
+Email: ${email}
+Message: ${message}
+  `,
+};
 
   try {
     await transporter.sendMail(mailOptions);
