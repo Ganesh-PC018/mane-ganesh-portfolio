@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+   
+    --background: 0 0% 97.3%; /* Almost-white #F8F9FA */
+    --foreground: 200 13% 25%; /* Steel-gray #2F3E46 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 13% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 13% 25%;
+
+    /* Warm Coral Primary */
+    --primary: 0 73% 69%; /* #FF6B6B */
+    --primary-foreground: 0 0% 100%;
+
+    /* Sea-foam Secondary */
+    --secondary: 170 67% 60%; /* #4ECDC4 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 200 8% 45%;
+
+    --accent: 170 67% 60%; /* Sea-foam accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 0 73% 69%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode with preserved coral/sea-foam accents */
+    --background: 0 0% 10%; /* #1A1A1A */
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Keep warm coral in dark mode */
+    --primary: 0 73% 69%; /* #FF6B6B */
+    --primary-foreground: 0 0% 100%;
+
+    /* Keep sea-foam in dark mode */
+    --secondary: 170 67% 60%; /* #4ECDC4 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 170 67% 60%; /* Sea-foam accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 73% 69%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Custom Portfolio Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Compact Typography System */
+  .text-compact-xs { font-size: 12px; line-height: 1.3; }
+  .text-compact-sm { font-size: 14px; line-height: 1.4; }
+  .text-compact-base { font-size: 16px; line-height: 1.4; }
+  .text-compact-lg { font-size: 18px; line-height: 1.3; }
+  .text-compact-xl { font-size: 20px; line-height: 1.3; }
+  .text-compact-2xl { font-size: 24px; line-height: 1.2; }
+}
+
+@layer components {
+  .btn-coral-outline {
+    @apply border border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground;
+    @apply transition-all duration-200 hover:scale-[1.03];
+    @apply rounded-full px-4 py-2 text-compact-sm font-medium;
+  }
+
+  .btn-seafoam-solid {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+    @apply transition-all duration-200 hover:scale-[1.03];
+    @apply rounded-full px-4 py-2 text-compact-sm font-medium;
+  }
+
+  /* Compact Card System */
+  .card-compact {
+    @apply bg-card text-card-foreground rounded-lg border;
+    @apply p-3 shadow-sm hover:shadow-md transition-shadow duration-200;
+    max-width: 200px;
+  }
+
+  .card-project {
+    @apply card-compact max-w-[250px] hover:scale-[1.02] transition-transform duration-200;
+  }
+
+  /* Floating Back to Top */
+  .back-to-top {
+    @apply fixed bottom-6 right-6 w-12 h-12 bg-primary text-primary-foreground;
+    @apply rounded-full shadow-lg flex items-center justify-center;
+    @apply transform translate-y-16 opacity-0 transition-all duration-300;
+    @apply hover:scale-110 cursor-pointer z-50;
+  }
+
+  .back-to-top.visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  /* Smooth Fade In Animation */
+  .fade-in {
+    @apply opacity-0 transform translate-y-4 transition-all duration-500;
+  }
+
+  .fade-in.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Skill Icon Hover Effect */
+  .skill-icon {
+    @apply w-10 h-10 rounded-full bg-muted flex items-center justify-center;
+    @apply hover:scale-110 transition-transform duration-200;
+    @apply hover:bg-primary hover:text-primary-foreground cursor-pointer;
+  }
+}
