@@ -16,7 +16,7 @@ export const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("http://localhost:5000/send", {
+      const response = await fetch("https://mane-ganesh-portfolio.onrender.com/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
