@@ -98,7 +98,7 @@ export const AboutSection = () => {
                     </div>
 
                     {/* Right Column */}
-                    <div className={`space-y-6 transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0 md:max-h-full md:opacity-100'} overflow-hidden md:overflow-visible`}>
+                    <div className="space-y-6 transition-all duration-500 ease-in-out">
                         <div className="bg-white rounded-xl shadow-sm p-5 border border-gray-100">
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="bg-green-100 text-green-600 p-2 rounded-full">
@@ -117,6 +117,11 @@ export const AboutSection = () => {
                                     <p>Govt. Polytechnic Pune</p>
                                     <p className="text-xs text-gray-500">2020 - 2023 (90.33%)</p>
                                 </div>
+                                <div>
+                                    <p className="font-medium">State Secondary Certificate</p>
+                                    <p>Aurangabad Division-Maharashtra</p>
+                                    <p className="text-xs text-gray-500">2019 - 2020 (95.60%)</p>
+                                </div>
                             </div>
                         </div>
 
@@ -130,7 +135,7 @@ export const AboutSection = () => {
                             <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
                                 <li>Top 1% on GeeksforGeeks (Institute)</li>
                                 <li>5★ Gold Badge in Java on HackerRank</li>
-                                <li>Knight Badge on LeetCode</li>
+                                <li>200+ DSA Problems on LeetCode</li>
                             </ul>
                         </div>
                     </div>

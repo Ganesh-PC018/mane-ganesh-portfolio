@@ -16,7 +16,7 @@ export const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("https://mane-ganesh-portfolio.onrender.com/send", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
