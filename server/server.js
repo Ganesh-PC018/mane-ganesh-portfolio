@@ -33,7 +33,16 @@ Name: ${name}
 Email: ${email}
 Message: ${message}`,
   };
-})
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true, message: "Email sent successfully!" });
+  } catch (error) {
+    console.error("Nodemailer Error:", error);
+    res.status(500).json({ success: false, message: "Failed to send email.", error });
+  }
+});
+
 // ✨ IMPROVED: Chatbot route with a more robust prompt and JSON response format
 app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
