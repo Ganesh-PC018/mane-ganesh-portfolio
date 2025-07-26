@@ -108,12 +108,11 @@ export const ProjectsSection = () => {
               Browse additional repositories and ongoing work
             </p>
             <a
-              href="https://github.com"
+              href="https://github.com/ganesh-pc018"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-md border border-primary bg-transparent px-4 py-2 text-sm
-                         font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
+                         font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground">
               <Github className="h-4 w-4" />
               GitHub Profile
             </a>

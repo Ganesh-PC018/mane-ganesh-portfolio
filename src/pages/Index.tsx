@@ -8,6 +8,12 @@ import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { ExperienceSection } from "@/components/ExperienceSection";
+import ChatBot from "@/components/ChatBot"; // ✅ add this
+
+// import {ChatBot} from "@component/components/ChatBot.tsx";
+// If you want to use ChatBot, update the path below to the correct one, for example:
+// Or remove the import if the component/file does not exist.
+
 const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -71,7 +77,8 @@ const Index = () => {
       </main>
       
       <Footer />
-      <BackToTop />
+      {/* <BackToTop /> */}
+      <ChatBot />
     </div>
   );
 };

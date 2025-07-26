@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Download, Eye, ChevronDown, ExternalLink } from "lucide-react";
-import ganeshAvatar from "../assets/ganesh-avatar.jpg";
+import ganeshAvatar from "../assets/ganesh-avatar-1.png";
 import resume from "../assets/resume.pdf";
 
 export const HeroSection = () => {
@@ -15,7 +15,7 @@ export const HeroSection = () => {
 
   // Floating cursor gradient effect (desktop only)
   useEffect(() => {
-    const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
+    const handleMouseMove = (e) => {
       if (window.innerWidth > 768) {
         setCursorXY({ x: e.clientX, y: e.clientY });
       }
@@ -69,7 +69,7 @@ export const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center px-4 pt-16 bg-gradient-to-br from-white via-gray-50 to-slate-100 overflow-hidden"
     >
       {/* Animated floating gradient (desktop only) */}
-      {window.innerWidth > 768 && (
+      {typeof window !== "undefined" && window.innerWidth > 768 && (
         <div
           className="absolute pointer-events-none mix-blend-overlay opacity-20 dark:opacity-10 transition-opacity"
           style={{
@@ -78,7 +78,7 @@ export const HeroSection = () => {
             width: "400px",
             height: "400px",
             background:
-              "radial-gradient( circle, rgba(99, 102, 241, 0.8), rgba(217, 119, 6, 0) 70% )",
+              "radial-gradient(circle, rgba(99,102,241,0.8), rgba(217,119,6,0) 70%)",
             transform: "translate(-50%, -50%)",
             zIndex: 0,
           }}
@@ -87,6 +87,37 @@ export const HeroSection = () => {
 
       <div className="max-w-6xl mx-auto w-full relative z-[1]">
         <div className="grid md:grid-cols-2 gap-10 items-center">
+          {/* Right Side - Avatar - On mobile, small circle above text; On desktop, large card to the right */}
+          <div className="flex flex-col items-center md:order-2">
+            {/* Mobile: small, circular avatar */}
+            {/* <div className="block md:hidden mb-6">
+              <div className="w-20 h-20 rounded-full overflow-hidden shadow-lg border-2 border-primary/40">
+                <img
+                  src={ganeshAvatar}
+                  alt="Ganesh Mane"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+              </div>
+            </div> */}
+            {/* Desktop: large, stylized avatar */}
+            <div className="hidden md:block">
+              <div className="w-80 h-80 rounded-3xl overflow-hidden shadow-xl border-4 border-primary/30 hover:shadow-2xl hover:border-primary/50 transition-all duration-300 relative group">
+                <img
+                  src={ganeshAvatar}
+                  alt="Ganesh Mane"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                />
+                <div className="absolute -top-3 -right-3 w-6 h-6 bg-primary rounded-full animate-ping" />
+                <div
+                  className="absolute -bottom-4 -left-4 w-5 h-5 bg-secondary rounded-full animate-pulse"
+                  style={{ animationDelay: "800ms" }}
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Left Side - Text Content */}
           <div
             className={`space-y-8 transform transition-opacity duration-700 ease-in ${
@@ -95,9 +126,7 @@ export const HeroSection = () => {
           >
             <div className="flex items-center gap-3 animate-fadeIn">
               <span className="text-muted-foreground text-base">👋</span>
-              <span className="text-muted-foreground text-base">
-                Hello there!
-              </span>
+              <span className="text-muted-foreground text-base">Hello there!</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold text-foreground leading-tight">
@@ -154,7 +183,7 @@ export const HeroSection = () => {
               <a
                 href={resume}
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full bg-gradient-to-r from-teal-500 to-blue-500 text-white hover:brightness-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 active:scale-95"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full bg-gradient-to-r from-teal-500 to-blue-500 text-dark hover:brightness-110 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 active:scale-95"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
@@ -174,50 +203,12 @@ export const HeroSection = () => {
                   >
                     {stat.value}
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    {stat.label}
-                  </div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Right Side - Avatar */}
-          <div
-            className={`flex justify-center transition-opacity duration-700 ease-in ${
-              isVisible ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <div className="relative group">
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-xl border-4 border-primary/30 hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
-                <img
-                  src={ganeshAvatar}
-                  alt="Ganesh Mane"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="eager"
-                />
-              </div>
-              {/* Floating dots */}
-              <div className="absolute -top-3 -right-3 w-6 h-6 bg-primary rounded-full animate-ping" />
-              <div
-                className="absolute -bottom-4 -left-4 w-5 h-5 bg-secondary rounded-full animate-pulse"
-                style={{ animationDelay: "800ms" }}
-              />
-            </div>
-          </div>
         </div>
-
-        {/* Scroll Down Indicator */}
-        {/* <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <button
-            onClick={scrollToAbout}
-            aria-label="Scroll to About section"
-            className="flex flex-col items-center text-muted-foreground hover:text-primary transition duration-300 hover:scale-110"
-          >
-            <span className="text-xs tracking-widest uppercase">Scroll Down</span>
-            <ChevronDown className="w-5 h-5 mt-1" />
-          </button>
-        </div> */}
 
         {/* Competitive Programming Profiles */}
         <div className="mt-10 md:mt-16 animate-fadeInUp">
@@ -229,14 +220,15 @@ export const HeroSection = () => {
               <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </span>
           </h4>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {/* Mobile: horizontal scroll; Desktop: grid */}
+          <div className="flex md:grid md:grid-cols-4 gap-3 overflow-x-auto">
             {profiles.map((profile) => (
               <a
                 key={profile.name}
                 href={profile.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group text-center p-3 rounded-xl border border-border bg-muted/50 hover:bg-muted hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col"
+                className="group text-center p-3 rounded-xl border border-border bg-muted/50 hover:bg-muted hover:shadow-lg transition-all duration-200 hover:-translate-y-1 flex flex-col min-w-[140px]"
               >
                 <div className="text-sm font-semibold text-foreground group-hover:text-primary">
                   {profile.name}
