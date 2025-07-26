@@ -119,24 +119,34 @@ const ChatBot: React.FC = () => {
   };
   
   // ✨ IMPROVED: Mobile-first responsive styles
-  const getResponsiveStyles = () => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-      return {
-        position: 'fixed' as const,
-        top: 0, right: 0, bottom: 0, left: 0,
-        width: '100%', height: '100%',
-        maxWidth: '100vw', maxHeight: '100vh',
-        borderRadius: 0,
-      };
-    }
+const getResponsiveStyles = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  if (isMobile) {
     return {
       position: 'fixed' as const,
-      bottom: '20px', right: '20px',
-      width: '400px',
-      height: isMinimized ? '60px' : 'clamp(500px, 80vh, 650px)',
-      maxWidth: '90vw',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: isMinimized ? '60px' : '100%',
+      borderRadius: 0,
     };
+  }
+
+  return {
+    position: 'fixed' as const,
+    bottom: '20px',
+    right: '20px',
+    width: '400px',
+    height: isMinimized ? '60px' : 'clamp(500px, 80vh, 650px)',
+    maxWidth: '90vw',
   };
+};
+
 
   return (
     <>
@@ -187,7 +197,7 @@ const ChatBot: React.FC = () => {
           {/* Messages & Input Area */}
           {!isMinimized && (
             <div className="flex flex-col flex-1 min-h-0">
-              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-slate-800 custom-scrollbar">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 custom-scrollbar">
                 {messages.map((msg, i) => (
                   <div key={i} className={`flex items-end gap-2 animate-fadeIn ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                     {msg.sender === "bot" && <span className="text-2xl self-start">{BOT_AVATAR}</span>}
@@ -226,7 +236,7 @@ const ChatBot: React.FC = () => {
               <div className="p-2 border-t border-gray-200 dark:border-slate-700">
                 <div className="flex flex-wrap gap-2 justify-center">
                   {quickReplies.map((reply) => (
-                    <button key={reply} onClick={() => handleQuickReply(reply)} className="px-3 py-1 bg-teal-100 dark:bg-slate-800 text-teal-800 dark:text-teal-300 rounded-full text-xs hover:bg-teal-200 dark:hover:bg-slate-700 transition">
+                    <button key={reply} onClick={() => handleQuickReply(reply)} className="px-3 py-1 bg-teal-100 text-teal-800 dark:text-teal-300 rounded-full text-xs hover:bg-teal-200 dark:hover:bg-slate-700 transition">
                       {reply}
                     </button>
                   ))}
@@ -240,7 +250,7 @@ const ChatBot: React.FC = () => {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="flex-1 p-2.5 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 resize-none bg-gray-50 dark:bg-slate-800"
+                    className="flex-1 p-2.5 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-teal-500 resize-none bg-gray-50"
                     placeholder="Ask me anything..."
                     disabled={isTyping}
                     rows={1}
